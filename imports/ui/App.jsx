@@ -23,7 +23,7 @@ class App extends Component {
  
     // Find the text field via the React ref
     const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
- 
+     Meteor.call('tasks.insert', text);
     Tasks.insert({
       text,
       createdAt: new Date(), // current time
@@ -87,6 +87,7 @@ App.propTypes = {
 };
  
 export default createContainer(() => {
+  Meteor.subscribe('tasks');  
   return {
     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
     incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
