@@ -1,16 +1,15 @@
-import { Meteor } from 'meteor/meteor';
+import {Meteor} from 'meteor/meteor';
 import React from 'react';
-import { render } from 'react-dom';
- import {Router, Route, browserHistory, history, withRouter} from 'react-router';
+import ReactDOM from 'react-dom';
+import {BrowserRouter, Route} from 'react-router-dom'
+import '../imports/startup/accounts-config.js';
 import App from '../imports/ui/App.jsx';
- const renderRoutes = () => (
+const renderRoutes = () => (
+  <BrowserRouter>
+    <Route path="/" component={App}/>
+  </BrowserRouter>
 
-    <Router history={browserHistory}>
-      <Route path="/" component={App}/>
-   
-        
-    </Router>
 );
 Meteor.startup(() => {
-  render(renderRoutes(), document.getElementById('appAirMine'));
+  ReactDOM.render((renderRoutes()), document.getElementById('appAirMine'));
 });

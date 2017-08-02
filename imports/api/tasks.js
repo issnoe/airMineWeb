@@ -3,8 +3,14 @@ import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
 export const Tasks = new Mongo.Collection('tasks');
-if (Meteor.isServer) {
+Router.configure({
+  layoutTemplate: '',
 
+  template: ''
+
+});
+if (Meteor.isServer) {
+  
   Router.route('/auth', function () {
     var name = this.params;
     var data = this.request.body;

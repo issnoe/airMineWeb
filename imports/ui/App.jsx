@@ -3,12 +3,15 @@ import { createContainer } from 'meteor/react-meteor-data';
  import ReactDOM from 'react-dom';
 import { Tasks } from '../api/tasks.js';
 import Task from './Task.jsx';
+import Account from './Account.jsx';
+import { Meteor } from 'meteor/meteor';
  
 // App component - represents the whole app
 class App extends Component {
    constructor(props) {
     super(props);
- 
+    debugger;
+    var idUser = Meteor.userId();
     this.state = {
       hideCompleted: false,
     };
@@ -71,8 +74,9 @@ class App extends Component {
               placeholder="Type to add new tasks"
             />
           </form>
+          <Account/>
         </header>
- 
+      
         <ul>
           {this.renderTasks()}
         </ul>
